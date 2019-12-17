@@ -21,10 +21,9 @@ public class UnityPlayerActivity extends Activity
     {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        mUnityPlayer = new UnityPlayer(this);
-        setContentView(mUnityPlayer);
-        mUnityPlayer.requestFocus();
+
     }
 
     @Override protected void onNewIntent(Intent intent)
@@ -107,6 +106,19 @@ public class UnityPlayerActivity extends Activity
         if (event.getAction() == KeyEvent.ACTION_MULTIPLE)
             return mUnityPlayer.injectEvent(event);
         return super.dispatchKeyEvent(event);
+    }
+
+    public void mOnClick(View v)
+    {
+        switch(v.getId())
+        {
+            case R.id.btnUnityPlayer:
+                mUnityPlayer = new UnityPlayer(this);
+                setContentView(mUnityPlayer);
+                mUnityPlayer.requestFocus();
+                break;
+        }
+
     }
 
     // Pass any events not handled by (unfocused) views straight to UnityPlayer
